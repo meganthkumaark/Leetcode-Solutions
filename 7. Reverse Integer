@@ -1,0 +1,27 @@
+*** C ***
+
+
+
+public class Solution {
+    public int Reverse(int x) {
+        bool neg = false;      //check if negative number
+        if(x<0)
+        {
+            neg = true;
+            x = x*-1;
+        }
+        
+        //Convert to string than reverse by Array
+        string y = x.ToString();
+        char[] arr = y.ToCharArray();
+        Array.Reverse(arr);
+        y = new string(arr);
+        
+        int res = 0;
+        if(Int32.TryParse(y,out res))
+        {
+            res *= neg ? -1 : 1;
+        }
+        return res;
+    }
+}
