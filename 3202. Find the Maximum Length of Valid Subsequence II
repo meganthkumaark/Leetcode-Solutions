@@ -1,0 +1,32 @@
+*** python ***
+
+
+class Solution {
+    public int maximumLength(int[] nums, int k) {
+        int n = nums.length;
+        for(int i=0;i<n;i++)
+            nums[i] %= k;
+            
+        int[][] alter = new int[k+1][k+1];
+        
+        for(int i=0;i<k;i++){
+            alter[nums[0]][i] = 1;
+        }
+
+        for(int i=1;i<n;i++){
+            int elem = nums[i];
+            for(int j=0;j<k;j++){
+                if(Math.abs(alter[j][elem]  - alter[elem][j]) < 2) {
+                    alter[elem][j] = alter[j][elem]+1;
+                }
+            }
+        }
+        int ans = 0;
+        for(int i=0;i<k;i++) {
+            for(int j=0;j<k;j++) {
+                ans = Math.max(ans, alter[i][j]);
+            }
+        }
+        return ans;
+    }
+}
